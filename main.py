@@ -1,8 +1,10 @@
 from flask import Flask, request, send_file
+from flask_cors import CORS
 import io
 from pypdf import PdfReader, PdfWriter
 
 app = Flask(__name__)
+CORS(app)  # This line enables CORS
 
 @app.route('/compress', methods=['POST'])
 def compress_pdf():
