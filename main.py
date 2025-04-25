@@ -4,7 +4,7 @@ import io
 from pypdf import PdfReader, PdfWriter
 
 app = Flask(__name__)
-CORS(app)  # This line enables CORS
+CORS(app)
 
 @app.route('/compress', methods=['POST'])
 def compress_pdf():
@@ -16,7 +16,7 @@ def compress_pdf():
     writer = PdfWriter()
     for page in reader.pages:
         writer.add_page(page)
-    writer.compress_content_streams()
+    # compress_content_streams() removed
 
     buf = io.BytesIO()
     writer.write(buf)
@@ -30,3 +30,4 @@ def compress_pdf():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000)
+
